@@ -1,5 +1,7 @@
         
         // Give it a name:
+        unsigned long time;
+        
         int led  =13;
         int led_set=1;
         int sin1 = 2;
@@ -9,7 +11,8 @@
         int lat  = 6;
         int str  = 7;   
      
-        
+   boolean compare1(0);
+   boolean compare2(0);     
 
         
                        
@@ -97,12 +100,21 @@
     void fn_display(boolean data[16][32]){
       
              for(int y=0; y <16 ;y++ ){
-    	             for(int x=15; x > -1 ;x-- ){
+    	             for(int x=0; x <16 ;x++ ){
     	             
     	              //write data
-    	             digitalWrite(sin1,data_y[y][x]);
-    	             digitalWrite(sin2,data[y][x]);
-    	             digitalWrite(sin3,data[y][16+x]);
+    
+    	             digitalWrite(sin1,x==y);
+                     if(compare1 != data[y][15-x]){
+                     compare1=data[y][15-x];
+                     digitalWrite(sin2,compare1);
+                     };
+                     if(compare2 != data[y][31-x]){
+                     compare2=data[y][31-x];
+                     digitalWrite(sin3,compare2);
+                     };
+                     
+                     
     	             //shift clk
     	             digitalWrite(clk,1);  
     	             digitalWrite(clk,0);
@@ -114,7 +126,9 @@
         
         
         
-        void setup() {                
+        void setup() {       
+ 
+          Serial.begin(9600);
           // initialize the digital pin as an output.
           
           pinMode(led, OUTPUT);  
@@ -137,11 +151,14 @@
         
         // the loop routine runs over and over again forever:
         void loop() {
-          
-     fn_display(kao);
-     delay(100);
-     led_blink();    // for masure loop (speed frequency /2)
-    	      
-
-
+     time = micros()     ;
+     
+     
+     
+     fn_display(cmmc);
+     
+     
+     
+     
+    Serial.println(micros()- time);
           }
