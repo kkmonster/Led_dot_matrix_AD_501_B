@@ -66,18 +66,18 @@
                                0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1};
     
     
-    boolean *p_data[16][32] = data ;    
 
 
-    void fn_display(*p_data[16][32]){
+
+    void fn_display(boolean data[16][32]){
       
              for(int y=0; y <16 ;y++ ){
     	             for(int x=0; x <16 ;x++ ){
     	             
     	              //write data
     	             digitalWrite(sin1,data_y[y][x]);
-    	             digitalWrite(sin2,*p_data[y][15-x]);
-    	             digitalWrite(sin3,*p_data[y][31-x]);
+    	             digitalWrite(sin2,data[y][15-x]);
+    	             digitalWrite(sin3,data[y][31-x]);
     	             //shift clk
     	             digitalWrite(clk,1);  
     	             digitalWrite(clk,0);
@@ -113,23 +113,8 @@
         // the loop routine runs over and over again forever:
         void loop() {
           
-     fn_display(data);
+     fn_display(cmmc);
     	      
-//    	      for(int y=0; y <16 ;y++ ){
-//    	            for(int x=0; x <16 ;x++ ){
-//    	             
-//    	              //write data
-//    	             digitalWrite(sin1,data_y[y][x]);
-//    	             digitalWrite(sin2,cmmc[y][15-x]);
-//    	             digitalWrite(sin3,cmmc[y][31-x]);
-//    	             //shift clk
-//    	             digitalWrite(clk,1);  
-//    	             digitalWrite(clk,0);
-//    	              }
-//    	      digitalWrite(lat,0);
-//    	      digitalWrite(lat,1);
-//    	      }
-    
-    
-    
+
+
           }
